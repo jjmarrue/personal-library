@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;700&display=swap');
+
+:root {
+  --default-txt-size: 1.15rem;
+  --title-size: 1.35rem;
+  --h1-size: 2.25rem;
+
+  --body-bg-clr: #faf9f9;
+  --book-item-bg-clr: #faf9f9;
+  --form-bg-clr: #faf9f9;
+  --txt-clr: #555b6e;
+  --h1-clr: #555b6e;
+  --book-title-clr: #555b6e;
+
+  --switch-on-clr: #89b0ae;
+  --switch-off-clr: #ffa69e;
+  --switch-toggle-clr: #faf9f9;
+
+  --btn-bg-clr: #aed9e0;
+  --btn-bg-hover-clr: #555b6e;
+  --btn-txt-clr: #555b6e;
+  --btn-txt-hover-clr: #faf9f9;
+
+  --input-focus-clr: #89b0ae;
+  --input-bad-clr: #ffa69e;
+  --input-bg-clr: #ffffff;
+
+  --link-txt-clr: #555b6e;
+  --link-hover-clr: #89b0ae;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--body-bg-clr);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 25px;
+}
+
+a, p {
+  line-height: 1.5rem;
+  text-decoration: none;
+}
+
+/* 
+ * Styles for header section
+ */
+
+header {
+  background-color: var(--book-item-bg-clr);
+}
+
+.header {
+  padding: 40px 25px 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.header h1 {
+  font-size: var(--h1-size);
+  color: var(--h1-clr);
+}
+
+.open-form {
+  color: var(--btn-txt-clr);
+  padding: 10px 8px;
+}
+
+.open-form a {
+  color: var(--link-txt-clr);
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 8px;
+}
+
+button,
+.open-form,
+.delBtn {
+  background-color: var(--btn-bg-clr);
+  color: var(--btn-txt-clr);
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover,
+.open-form:hover,
+.open-form:hover > a,
+.delBtn:hover {
+  background-color: var(--btn-bg-hover-clr);
+  color: var(--btn-txt-hover-clr);
+}
+
+/* 
+ * Styles for submissions form
+ */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity .2s;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 999;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-container {
+  margin: 5% auto;
+  padding: 20px;
+  background-color: var(--form-bg-clr);
+  border-radius: 4px;
+  max-width: 500px;
+  position:relative;
+  overflow: auto;
+}
+
+.form-section {
+  padding: 15px 5px 10px;
+}
+
+.form-section:first-of-type{
+  margin-top: 30px;
+}
+
+.close {
+  position:absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--btn-txt-clr);
+}
+
+input,
+select {
+  outline: 0;
+  display: block;
+  width: 100%;
+  border: 1px solid var(--book-item-bg-clr);
+  background-color: var(--input-bg-clr);
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 7px;
+  box-shadow: 1px 2px 3px 1px rgba(63, 63, 55,0.15);
+  font-size: 1rem;
+}
+
+#submission-form input[type="checkbox"] {
+  display: inline;
+  width: auto; 
+}
+
+input:focus {
+  border-color: var(--input-focus-clr); 
+}
+
+label {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 12px;
+  color: var(--txt-clr);
+}
+
+label .req {
+  font-weight: 300;
+  font-size: .85rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons button {
+  padding: 5px 10px;
+  margin: 10px;
+  width: 25%;
+  display: inline-block;
+}
+
+.error {
+  color: var(--input-bad-clr);
+}
+
+/* 
+ * Styles for filter form
+*/
+
+#filter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#filter #book-filter {
+  display: inline;
+  width: auto;
+}
+
+/* 
+ * Styles for catalog and individual books
+*/
+
+.book-catalog {
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-content: center;
+  gap: 20px;
+}
+
+.catalogItem {
+  color: var(--txt-clr);
+  background-color: var(--book-item-bg-clr);
+  border-radius: 8px;
+  box-shadow:  0 2px 4px 1px rgba(0,0,0,0.15);
+  padding: 15px;
+  display: grid;
+  grid-template-rows: 100px 150px 40px;
+  grid-template-columns: 1fr; 
+  gap: 5px;
+  transition: transform .4s ease-in-out;
+}
+
+.catalogItem:hover {
+  transform: scale(1.05);
+}
+
+.catalogItem .title {
+  color: var(--book-title-clr);
+  font-size: var(--title-size);
+  font-weight: 700;
+}
+
+.details {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  align-items:flex-start;
+}
+
+.details .genre {
+  display: block;
+}
+
+.details .author,
+.details .genre {
+  font-weight: 900;
+}
+
+.details > div {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 
+ * Styles for slider switch
+ */
+
+.switch {
+  position: relative;
+  width: 45px;
+  height: 20px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--switch-off-clr);
+  transition: .4s;
+}
+
+.slider.round {
+  border-radius: 18px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 1px;
+  bottom: 1px;
+  background-color: var(--switch-toggle-clr);
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--switch-on-clr);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(135%);
+  transform: translateX(135%);
+}
+
+/* 
+ * Styles for footer
+ */
+
+footer {
+  padding: 20px;
+  text-align: center;
+  box-shadow:  0 2px 4px 1px rgba(0,0,0,0.15);
+}
+
+footer p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.75em;
+}
+
+footer a {
+  color: var(--link-hover-clr);
+}
+
+footer .fa-github{
+  font-size: 20px;
+}
+
+footer a:hover {
+  color: var(--link-txt-clr);
+}
+
+/* 
+ * Styles for small screens
+ */
+
+@media screen and (max-width: 600px) {
+  .form-container {
+    margin: 20px 20px;
+  }
+  .header h1 {
+    text-align: center;
+    font-size:2rem;
+  }
+}
+
+@media screen and (max-width: 655px) {
+  .header {
+    justify-content: center;
+  }
+  .book-catalog {
+    margin: 25px 0;
+  }
+  .open-form a {
+    display: block;
+  }
+  .buttons button {
+    margin: 10px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .book-catalog {
+    grid-template-columns: repeat(2, 48%);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .book-catalog {
+    grid-template-columns: repeat(1, 100%);
+  }
+}
