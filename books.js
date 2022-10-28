@@ -6,7 +6,7 @@ const readCheckbox = document.getElementById('read');
 const genre = document.getElementById('book-genre');
 const selectedGenre = getSelectedText(genre);
 const errors = document.querySelectorAll('.error');
-const parsedArr = retrieveFromLocalStorage();
+
 
 let library = [
   {
@@ -35,7 +35,7 @@ function Book (title, pubYear, author, pages, readVal, genre) {
   this.readVal = readVal,
   this.genre = genre
 }
-
+const parsedArr = retrieveFromLocalStorage();
 // Load on page load
 
 window.addEventListener('load', () => {
