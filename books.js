@@ -1,4 +1,3 @@
-const parsedArr = retrieveFromLocalStorage(); /*how to save localstorage to library array*/
 const title = document.getElementById('book-title');
 const pubYear = document.getElementById('pub-year');
 const author = document.getElementById('book-author');
@@ -7,7 +6,7 @@ const readCheckbox = document.getElementById('read');
 const genre = document.getElementById('book-genre');
 const selectedGenre = getSelectedText(genre);
 const errors = document.querySelectorAll('.error');
-
+const parsedArr = retrieveFromLocalStorage();
 
 let library = [
   {
@@ -28,7 +27,6 @@ let library = [
   },
 ];
 
-
 function Book (title, pubYear, author, pages, readVal, genre) {
   this.title = title,
   this.pubYear = pubYear,
@@ -38,36 +36,44 @@ function Book (title, pubYear, author, pages, readVal, genre) {
   this.genre = genre
 }
 
-displayBooks(parsedArr);
-filterByReadStatus();
-document.querySelector('#add-book').addEventListener('click', addBookToLibrary);
-title.addEventListener('change', clearErrorMessages);
-pubYear.addEventListener('change', clearErrorMessages);
-author.addEventListener('change', clearErrorMessages);
-pages.addEventListener('change', clearErrorMessages);
-genre.addEventListener('change', clearErrorMessages);
+// Load on page load
 
 window.addEventListener('load', () => {
   const filterForm = document.getElementById('filter');
+  displayBooks(parsedArr);
+  filterByReadStatus();
+  document.querySelector('#add-book').addEventListener('click', addBookToLibrary);
+  title.addEventListener('change', clearErrorMessages);
+  pubYear.addEventListener('change', clearErrorMessages);
+  author.addEventListener('change', clearErrorMessages);
+  pages.addEventListener('change', clearErrorMessages);
+  genre.addEventListener('change', clearErrorMessages);
   filterForm.reset();
-})
+});
+
 
 function addArrToLocalStorage() {
   // Convert array to JSON string and save to localStorage
   const jsonArr = JSON.stringify(parsedArr);
-  localStorage.setItem('library', jsonArr);
+  localStorage.setItem('parsedArr', jsonArr);
 }
 
 function retrieveFromLocalStorage() {
   // Get the string from localStorage and convert to valid object
-  const str = localStorage.getItem('library');
-  return JSON.parse(str);
+  let str = '';
+  if (localStorage.getItem('parsedArr') === null) {
+    return library;
+  } else {
+    str = localStorage.getItem('parsedArr');
+    console.log(JSON.parse(str));
+    return JSON.parse(str);
+  }
 }
 
 function clearErrorMessages() {
   errors.forEach(error => {
     error.innerHTML = '';
-  })
+  });
 }
 
 function getSelectedText(el) {
@@ -155,7 +161,7 @@ function deleteBook(){
       // use the title to find the book in the array
       let index = parsedArr.findIndex(book => book.title == bookTitle);
       parsedArr.splice(index,1);     
-      displayBooks();
+      displayBooks(parsedArr);
     }
   });
 }
