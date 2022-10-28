@@ -126,6 +126,7 @@ button:hover,
   visibility: hidden;
   opacity: 0;
   z-index: 999;
+  overflow: scroll;
 }
 
 .overlay:target {
@@ -133,11 +134,12 @@ button:hover,
   opacity: 1;
 }
 
-.form-container form {
+/* .form-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-}
+  position:static;
+} */
 
 .form-container {
   margin: 5% auto;
@@ -146,7 +148,6 @@ button:hover,
   border-radius: 4px;
   max-width: 500px;
   position:relative;
-  overflow: auto;
 }
 
 .form-section {
